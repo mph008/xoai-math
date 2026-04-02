@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Xoài học toán</title>
     <style>
         /* Sử dụng font chữ hệ thống và tùy chỉnh để trông vui nhộn */
@@ -18,10 +18,23 @@
             color: #333;
             background-image: url('https://i.postimg.cc/L4v5CWJM/ironman.png');
             background-size: cover;
-            background-position: center;
+            background-position: center; /* Mặc định căn giữa */
             background-repeat: no-repeat;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-size: 16px; /* Kích thước font cơ bản */
+        }
+		
+		/* Thêm media query để điều chỉnh background trên màn hình nhỏ (ví dụ: mobile) */
+        @media (max-width: 767px) {
+            body {
+                background-position: center; /* Dịch sang phải và căn giữa theo chiều dọc */
+            }
+
+            #game-container {
+                width: 95%; /* Chiếm 95% chiều rộng màn hình */
+                max-width: 400px; /* Giới hạn chiều rộng tối đa */
+            }
         }
 
         /* Thêm hiệu ứng đổ bóng và làm đậm chữ để trông nổi bật hơn */
@@ -32,47 +45,47 @@
 
         #game-container {
             background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            padding: 5%; /* Sử dụng % cho padding */
             border-radius: 20px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             text-align: center;
             width: 90%;
-            max-width: 600px;
+            max-width: 600px; /* Đảm bảo không quá lớn trên iPad */
         }
 
         h1 {
             color: #ff4081;
-            margin-bottom: 20px;
+            margin-bottom: 3%; /* Sử dụng % cho margin */
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         #question {
             font-size: 2.2em;
-            margin-bottom: 25px;
+            margin-bottom: 4%; /* Sử dụng % cho margin */
             color: #e91e63;
         }
 
         input[type="number"] {
-            padding: 15px;
+            padding: 3%; /* Sử dụng % cho padding */
             font-size: 1.3em;
             border: 2px solid #f06292;
             border-radius: 12px;
-            width: 100px;
+            width: 25%; /* Sử dụng % cho width */
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 3%; /* Sử dụng % cho margin */
             outline: none;
         }
 
         button {
-            padding: 15px 30px;
+            padding: 4% 8%; /* Sử dụng % cho padding */
             font-size: 1.3em;
             background-color: #ba68c8;
             color: white;
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 3%; /* Sử dụng % cho margin */
             transition: background-color 0.3s ease;
         }
 
@@ -82,19 +95,19 @@
         }
 
         #result {
-            margin-top: 25px;
+            margin-top: 4%; /* Sử dụng % cho margin */
             font-size: 1.4em;
             font-weight: bold;
         }
 
         #timer {
             font-size: 1.3em;
-            margin-top: 15px;
+            margin-top: 3%; /* Sử dụng % cho margin */
             color: #7e57c2;
         }
 
         #settings {
-            margin-top: 30px;
+            margin-top: 5%; /* Sử dụng % cho margin */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -102,26 +115,25 @@
 
         #settings label,
         #settings input {
-            margin-bottom: 10px;
+            margin-bottom: 2%; /* Sử dụng % cho margin */
             font-size: 1.2em;
         }
 
         #score {
             font-size: 1.5em;
-            font-weight: bold;
-            margin-top: 20px;
+            margin-top: 4%; /* Sử dụng % cho margin */
             color: #ff7043;
         }
 
         #start-button {
-            padding: 15px 30px;
+            padding: 4% 8%; /* Sử dụng % cho padding */
             font-size: 1.3em;
             background-color: #4caf50;
             color: white;
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 3%; /* Sử dụng % cho margin */
             transition: background-color 0.3s ease;
         }
 
@@ -141,15 +153,15 @@
         }
 
         #results-list {
-            margin-top: 20px;
+            margin-top: 4%; /* Sử dụng % cho margin */
             text-align: left;
             width: 100%;
             max-width: 500px;
         }
 
         #results-list li {
-            padding: 10px;
-            margin-bottom: 5px;
+            padding: 2%; /* Sử dụng % cho padding */
+            margin-bottom: 2%; /* Sử dụng % cho margin */
             border-radius: 8px;
             list-style-type: none;
         }
@@ -170,15 +182,15 @@
         #progress-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 3%; /* Sử dụng % cho margin */
         }
 
         .progress-dot {
-            width: 15px;
-            height: 15px;
+            width: 4%; /* Sử dụng % cho width */
+            height: 4%; /* Sử dụng % cho height */
             border-radius: 50%;
             background-color: #ccc; /* Gray */
-            margin: 5px;
+            margin: 1%; /* Sử dụng % cho margin */
         }
 
         .progress-dot.correct {
