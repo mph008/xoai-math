@@ -387,7 +387,6 @@
 
                 if (timeLeft < 0) {
                     clearInterval(timerInterval);
-                    resultDiv.textContent = `Hết giờ!`;
                     resultDiv.style.backgroundColor = "transparent";
 
                     questions.push({
@@ -405,15 +404,12 @@
                         }
                     }
 
-                    // Delay the call to generateQuestion to allow "Hết giờ!" to display briefly
-                    setTimeout(() => {
-                        currentQuestionIndex++;
-                        if (currentQuestionIndex < totalQuestions) {
-                            generateQuestion();
-                        } else {
-                            endGame();
-                        }
-                    }, 500); // Delay of 500 milliseconds
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < totalQuestions) {
+                        generateQuestion();
+                    } else {
+                        endGame();
+                    }
                 }
             } catch (error) {
                 console.error("Lỗi khi cập nhật thời gian:", error);
